@@ -23,8 +23,9 @@ jobs:
       - name: Check version
         run: |
           version=$(echo "${{ github.event.pull_request.title }}" | grep -o -P '<release>:?\s*(\d+\.\d+\.\d+)(-\S+)?' |sed -E 's/<release>:?\s*//')
+          echo Seems you want to release $version
           if git show-ref --tags $version --quiet; then
-            echo "tag exists"
+            echo "bug tag exists"
             exit 1
           else 
             echo "tag is valid"
