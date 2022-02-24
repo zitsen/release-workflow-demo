@@ -27,6 +27,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           ./.ci/release.sh ${{ steps.extract-version.outputs.version }}
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "release: v${{ steps.extract-version.outputs.version }}"
+          file_pattern: version/version.go CHANGELOG.md
+          tagging_message: 'v${{ steps.extract-version.outputs.version }}'
           
       # - name: Release
       #   uses: softprops/action-gh-release@v1
