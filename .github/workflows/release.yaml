@@ -18,7 +18,8 @@ jobs:
       - name: Extract version
         id: extract-version
         run: |
-          version=$(echo ${{ github.event.pull_request.title }} | grep -o -E '<release>:?\s*(\d+\.\d+\.\d+)(-\S+)' |sed -E 's/<release>:?\s*//')
+          version=$(echo "${{ github.event.pull_request.title }}" | grep -o -P'<release>:?\s*(\d+\.\d+\.\d+)(-\S+)' |sed -E 's/<release>:?\s*//')
+          echo $version
           echo ::set-output name=version::$version
 
       - name: Generate Changelog
