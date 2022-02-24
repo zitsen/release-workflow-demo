@@ -1,0 +1,37 @@
+name: Release
+
+on:
+  pull_request:
+    branches:
+    - develop
+    types:
+      - closed
+
+jobs:
+  build:
+    if: github.event.pull_request.merged == 'true' && contains(github.event.pull_request.title, '<release>')
+    runs-on: ubuntu-20.04
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Extract version
+        id: extract-version
+        run: |
+          version=$(echo ${{ github.event.pull_request.title }} | grep -o -E '<release>:?\s*(\d+\.\d+\.\d+)(-\S+)' |sed -E 's/<release>:?\s*//')
+          echo ::set-output name=version::$version
+
+      - name: Generate Changelog
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ./.ci/release.sh ${{ steps.extract-version.outputs.version }}
+      # - name: Release
+      #   uses: softprops/action-gh-release@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     body_path: ${{ github.workflow }}-CHANGELOG.txt
+      #     files: |
+      #       target/release/bailongma-amd64
+      #       target/release/blm-bench-prom-amd64

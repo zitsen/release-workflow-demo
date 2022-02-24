@@ -1,0 +1,32 @@
+name: "Release PR Check"
+
+on:
+  pull_request_target:
+    branches:
+    - develop
+
+    types:
+      - opened
+      - edited
+      - synchronize
+      - labeled
+      - unlabeled
+jobs:
+  check:
+    if: contains(github.event.pull_request.title, '<release>')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Slashgear/action-check-pr-title@2.0.0
+        with:
+          regex: '<release>:?\s*(\d+\.\d+\.\d+)(-\S+)' # Regex the title should match.
+
+      - name: Check version
+        run: |
+          version=$(echo ${{ github.event.pull_request.title }} | grep -o -E '<release>:?\s*(\d+\.\d+\.\d+)(-\S+)' |sed -E 's/<release>:?\s*//')
+          if git show-ref --tags $version --quiet; then
+            echo "tag exists"
+            exit 1
+          else 
+            echo "tag is valid"
+          fi
+      
