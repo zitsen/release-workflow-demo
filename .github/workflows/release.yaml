@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           path: develop
-          
+
       - name: Extract version
         id: extract-version
         run: |
@@ -29,7 +29,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ./.ci/release.sh ${{ steps.extract-version.outputs.version }}
+          ./ci/release.sh ${{ steps.extract-version.outputs.version }}
+          
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "release: v${{ steps.extract-version.outputs.version }}"
