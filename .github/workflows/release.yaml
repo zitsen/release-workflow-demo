@@ -27,6 +27,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           ./.ci/release.sh ${{ steps.extract-version.outputs.version }}
+          
       # - name: Release
       #   uses: softprops/action-gh-release@v1
       #   env:
