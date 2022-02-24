@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: Slashgear/action-check-pr-title@v3.0.0
         with:
-          regexp: '.*<release>:?\s*(\d+\.\d+\.\d+)(-\S+).*' # Regex the title should match.
+          regexp: '.*<release>:?\s*(\d+\.\d+\.\d+)(-\S+)?.*' # Regex the title should match.
 
       - name: Check version
         run: |
