@@ -9,14 +9,14 @@ on:
       - opened
       - edited
       - synchronize
-      - labeled
-      - unlabeled
+      # - labeled
+      # - unlabeled
 jobs:
   check:
-    if: contains(github.event.pull_request.title, '<release>')
+    if: contains(github.event.pull_request.title, '<release>') || 
     runs-on: ubuntu-latest
     steps:
-      - uses: Slashgear/action-check-pr-title@2.0.0
+      - uses: Slashgear/action-check-pr-title@3.0.0
         with:
           regex: '<release>:?\s*(\d+\.\d+\.\d+)(-\S+)' # Regex the title should match.
 
