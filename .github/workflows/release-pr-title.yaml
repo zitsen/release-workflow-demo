@@ -9,8 +9,8 @@ on:
       - opened
       - edited
       - synchronize
-      # - labeled
-      # - unlabeled
+      - labeled
+      - unlabeled
 jobs:
   check:
     if: contains(github.event.pull_request.title, '<release>') || 
