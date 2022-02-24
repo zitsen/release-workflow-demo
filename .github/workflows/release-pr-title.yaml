@@ -16,7 +16,7 @@ jobs:
     if: contains(github.event.pull_request.title, '<release>')
     runs-on: ubuntu-latest
     steps:
-      - uses: Slashgear/action-check-pr-title@3.0.0
+      - uses: Slashgear/action-check-pr-title@v3.0.0
         with:
           regex: '<release>:?\s*(\d+\.\d+\.\d+)(-\S+)' # Regex the title should match.
 
