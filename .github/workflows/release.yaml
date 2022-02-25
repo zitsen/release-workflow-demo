@@ -33,6 +33,9 @@ jobs:
           
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
+          branch: develop
+          skip_fetch: true
+          skip_checkout: true
           commit_message: "release: v${{ steps.extract-version.outputs.version }}"
           file_pattern: version/version.go CHANGELOG.md
           tagging_message: 'v${{ steps.extract-version.outputs.version }}'
