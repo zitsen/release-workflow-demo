@@ -15,5 +15,8 @@ package version
 var Version = "$newv-alpha"
 EOF
 
-git commit version/version.go -m "chore: start next dev iteration $newv-alpha"
+git config user.name github-actions
+git config user.email github-actions@github.com
+git add version/version.go
+git commit -m "chore: start next dev iteration $newv-alpha"
 git push
