@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ## v0.1.0 - 2022-02-25
+## v0.1.2 - 2022-02-25
+
+### Bug Fixes:
+
+- [TD-123]: naming it better
+- [TD-123]: simplify CI
+
 ## v0.1.1 - 2022-02-25
 
 ### Features:
