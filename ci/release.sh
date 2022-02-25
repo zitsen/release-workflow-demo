@@ -16,6 +16,7 @@ EOF
 
 sed -n "1,9p" CHANGELOG.md > CHANGELOG.md2
 printf "## v$newv - $(date +%F)\n\n" >> CHANGELOG.md2
-$ci/changelog-generate.sh >> CHANGELOG.md2
+$ci/changelog-generate.sh > CHANGELOG.tmp
+cat CHANGELOG.tmp >> CHANGELOG.md2
 sed "1,9d" CHANGELOG.md >> CHANGELOG.md2
 mv CHANGELOG.md2 CHANGELOG.md
