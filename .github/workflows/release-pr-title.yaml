@@ -13,6 +13,7 @@ on:
       - unlabeled
 jobs:
   check:
+    name: "PR check if release"
     if: contains(github.event.pull_request.title, '<release>')
     runs-on: ubuntu-latest
     steps:
