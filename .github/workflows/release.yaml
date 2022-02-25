@@ -16,7 +16,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          path: develop
+          ref: develop
 
       - name: Extract version
         id: extract-version
