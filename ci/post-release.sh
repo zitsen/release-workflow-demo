@@ -14,3 +14,6 @@ package version
 
 var Version = "$newv-alpha"
 EOF
+
+git commit version/version.go -m "chore: start next dev iteration $newv-alpha"
+git push
