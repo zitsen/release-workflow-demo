@@ -13,6 +13,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - [TD-123]: use a alpha version after released
 
+### Bug Fixes:
+
+- [TD-123]: fix post release
+
+## v0.1.1 - 2022-02-25
+
+### Features:
+
+- [TD-123]: use a alpha version after released
+
 ## v0.1.0 - 2022-02-25
 
 ### Features:
