@@ -6,3 +6,5 @@ The format is based on [Conventional Changelog](https://www.conventionalcommits.
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## v0.1.0 - 2022-02-25
+
