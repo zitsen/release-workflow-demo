@@ -26,22 +26,12 @@ jobs:
           echo $version
           echo ::set-output name=version::$version
 
-      - name: Generate Changelog
+      - name: Pre-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           ./ci/release.sh ${{ steps.extract-version.outputs.version }}
           
-      - name: Commit and Tag
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          branch: develop
-          skip_fetch: true
-          skip_checkout: true
-          commit_message: "release: v${{ steps.extract-version.outputs.version }}"
-          file_pattern: version/version.go CHANGELOG.md
-          tagging_message: 'v${{ steps.extract-version.outputs.version }}'
-
       - name: Release
         uses: softprops/action-gh-release@v1
         env:
@@ -50,6 +40,6 @@ jobs:
           tag_name: v${{ steps.extract-version.outputs.version }}
           body_path: CHANGELOG.tmp
       
-      - name: Bump alpha version
+      - name: Post-release
         run: |
           ./ci/post-release.sh ${{ steps.extract-version.outputs.version }}

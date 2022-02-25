@@ -20,3 +20,12 @@ $ci/changelog-generate.sh > CHANGELOG.tmp
 cat CHANGELOG.tmp >> CHANGELOG.md2
 sed "1,9d" CHANGELOG.md >> CHANGELOG.md2
 mv CHANGELOG.md2 CHANGELOG.md
+
+git config user.name github-actions
+git config user.email github-actions@github.com
+git add version/version.go CHANGELOG.md
+git commit -m "release: v$newv"
+git push
+
+git tag v$newv
+git push origin v$newv:$newv --force
