@@ -14,7 +14,7 @@ package version
 var Version = "$newv"
 EOF
 
-sed -n "1,7p" CHANGELOG.md > CHANGELOG.md2
+head -n7 CHANGELOG.md > CHANGELOG.md2
 printf "## v$newv - $(date +%F)\n\n" >> CHANGELOG.md2
 $ci/changelog-generate.sh > CHANGELOG.tmp
 cat CHANGELOG.tmp >> CHANGELOG.md2

@@ -15,7 +15,7 @@ function part() {
   lines=$(printf "\\$changes\n" |wc -l)
   # echo $name $pattern $lines >&2
   if [ $lines -gt 0 ]; then
-    echo "### $name:"
+    echo "### $name"
     echo ""
     echo "$changes"
     echo ""
