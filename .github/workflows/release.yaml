@@ -32,7 +32,8 @@ jobs:
         run: |
           ./ci/release.sh ${{ steps.extract-version.outputs.version }}
           
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - name: Commit and Tag
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
           branch: develop
           skip_fetch: true
@@ -48,3 +49,7 @@ jobs:
         with:
           tag_name: v${{ steps.extract-version.outputs.version }}
           body_path: CHANGELOG.tmp
+      
+      - name: Post Release
+        run: |
+          ./ci/post-release.sh
